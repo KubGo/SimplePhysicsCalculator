@@ -1,37 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!--
-  Copyright (c) 2015, 2019, Gluon and/or its affiliates.
-  All rights reserved. Use is subject to license terms.
-
-  This file is available and licensed under the following license:
-
-  Redistribution and use in source and binary forms, with or without
-  modification, are permitted provided that the following conditions
-  are met:
-
-  - Redistributions of source code must retain the above copyright
-    notice, this list of conditions and the following disclaimer.
-  - Redistributions in binary form must reproduce the above copyright
-    notice, this list of conditions and the following disclaimer in
-    the documentation and/or other materials provided with the distribution.
-  - Neither the name of Oracle Corporation nor the names of its
-    contributors may be used to endorse or promote products derived
-    from this software without specific prior written permission.
-
-  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
--->
-
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
@@ -50,7 +18,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kubgo.simplephysicscalculator.VelocityCalculationsController">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
@@ -91,7 +59,7 @@
         </Menu>
       </menus>
     </MenuBar>
-    <SplitPane dividerPositions="0.2505567928730512, 0.7505567928730512" focusTraversable="true" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+    <SplitPane dividerPositions="0.2505567928730512" focusTraversable="true" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
       <items>
         <AnchorPane>
           <children>
@@ -112,29 +80,32 @@
         </AnchorPane>
         <ScrollPane prefHeight="-1.0" prefWidth="-1.0">
           <content>
-            <AnchorPane id="Content" minHeight="-1.0" minWidth="-1.0" prefHeight="545.0" prefWidth="430.0">
+            <AnchorPane id="Content" minHeight="-1.0" minWidth="-1.0" prefHeight="545.0" prefWidth="667.0">
               <children>
-                <Label alignment="CENTER" font="$x1" layoutX="14.0" layoutY="14.0" style="&#10;" text="View" textAlignment="CENTER" textFill="$x2" wrapText="false" />
-                        <VBox alignment="TOP_CENTER" fillWidth="false" layoutX="165.0" layoutY="173.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="50.0">
+                <Label alignment="CENTER" font="$x1" layoutX="258.0" layoutY="14.0" style="&#10;" text="Velocity calculator" textAlignment="CENTER" textFill="$x2" wrapText="false" />
+                        <VBox fx:id="mainPane" alignment="TOP_CENTER" fillWidth="false" layoutX="165.0" layoutY="173.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="50.0">
                            <children>
-                              <HBox prefHeight="54.0" prefWidth="400.0" spacing="10.0">
+                              <HBox prefHeight="97.0" prefWidth="400.0" spacing="10.0">
                                  <children>
                                     <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
                                        <children>
                                           <Label text="Distance" />
-                                          <TextField />
+                                          <TextField fx:id="distance_fld" />
+                                          <Label fx:id="distance_err" disable="true" text="Supply numeric value" textAlignment="CENTER" wrapText="true" />
                                        </children>
                                     </VBox>
-                                    <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
+                                    <VBox alignment="TOP_CENTER" prefHeight="62.0" prefWidth="118.0">
                                        <children>
                                           <Label text="Time" />
-                                          <TextField />
+                                          <TextField fx:id="time_fld" />
+                                          <Label fx:id="time_err" disable="true" prefHeight="46.0" prefWidth="118.0" text="Time must be positive number" textAlignment="CENTER" wrapText="true" />
                                        </children>
                                     </VBox>
                                     <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
                                        <children>
                                           <Label text="Acceleration" />
-                                          <TextField />
+                                          <TextField fx:id="acceleration_fld" />
+                                          <Label fx:id="acceleration_err" disable="true" text="Supply numeric value" textAlignment="CENTER" wrapText="true" />
                                        </children>
                                     </VBox>
                                  </children>
@@ -146,9 +117,10 @@
                                  </VBox.margin>
                               </HBox>
                               <HBox alignment="CENTER" prefHeight="48.0" prefWidth="400.0">
-                                 <children>
-                                    <Label alignment="CENTER" minWidth="100.0" text="0" HBox.hgrow="ALWAYS" />
-                                    <Button alignment="CENTER_RIGHT" mnemonicParsing="false" text="Button" />
+                                <children>
+                                    <Label text="Velocity:" />
+                                    <Label fx:id="velocity_lbl" alignment="CENTER" minWidth="100.0" text="0" HBox.hgrow="ALWAYS" />
+                                    <Button fx:id="velocity_btn" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#onVelocityButton" text="Button" />
                                  </children>
                               </HBox>
                            </children>
@@ -157,11 +129,6 @@
             </AnchorPane>
           </content>
         </ScrollPane>
-        <AnchorPane>
-          <children>
-            <Label alignment="CENTER" font="$x1" layoutX="14.0" layoutY="14.0" style="&#10;" text="Details" textAlignment="CENTER" textFill="$x2" wrapText="false" />
-          </children>
-        </AnchorPane>
       </items>
     </SplitPane>
     <HBox id="HBox" alignment="CENTER_LEFT" spacing="5.0" VBox.vgrow="NEVER">
