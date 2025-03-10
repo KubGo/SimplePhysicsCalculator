@@ -25,19 +25,19 @@ public class VelocityCalculationsController {
     @FXML
     private Label distance_err;
 
-    private Boolean areValuesOk = false;
 
     private final Velocity velocity = new Velocity(0, 0, 0);
+
     @FXML
     protected void onVelocityButton(){
-        areValuesOk =  checkAllFields();
-        if (areValuesOk){
+        if (checkAllFields()){
             double distance = Double.parseDouble(distance_fld.getText());
             double time = Double.parseDouble(time_fld.getText());
             String acceleration_text = acceleration_fld.getText();
-            double acceleration = (acceleration_text == null) ? 0.0 : Double.parseDouble(acceleration_text);
+            double acceleration = (acceleration_text.isEmpty()) ? 0.0 : Double.parseDouble(acceleration_text);
             velocity.setAllValues(distance, time, acceleration);
-            velocity_lbl.setText(velocity.calculateVelocity() + "");
+            double result = velocity.calculateVelocity();
+            velocity_lbl.setText("%.3f".formatted(result));
         }
 
     }
