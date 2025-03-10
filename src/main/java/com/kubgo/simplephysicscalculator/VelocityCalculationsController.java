@@ -76,7 +76,7 @@ public class VelocityCalculationsController {
         removeErrors();
         return true;
     }
-    private void removeErrors(){
+    public void removeErrors(){
         time_err.setVisible(false);
         distance_err.setVisible(false);
         acceleration_err.setVisible(false);

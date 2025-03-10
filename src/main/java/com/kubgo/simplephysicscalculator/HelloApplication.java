@@ -13,6 +13,8 @@ public class HelloApplication extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("velocity-calculations.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
         stage.setTitle("Simple physics calculator");
+        VelocityCalculationsController controller = fxmlLoader.getController();
+        controller.removeErrors();
         stage.setScene(scene);
         stage.show();
     }
