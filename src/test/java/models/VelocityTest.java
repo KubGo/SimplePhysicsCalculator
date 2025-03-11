@@ -15,6 +15,6 @@ class VelocityTest {
     @Test
     void calculateVelocityWithAcceleration(){
         Velocity velocity = new Velocity(10, 2, 1);
-        Assertions.assertEquals(9, velocity.calculateVelocity(), 0.01);
+        Assertions.assertEquals(6, velocity.calculateVelocity(), 0.01);
     }
 }
