@@ -56,7 +56,6 @@ public class Velocity {
     public double calculateVelocity(){
         double initial_velocity = (distance - 0.5 * acceleration * time * time) / time;
         velocity = initial_velocity + acceleration * time;
-        setVelocity(velocity);
         return velocity;
     }
 }
