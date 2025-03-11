@@ -48,8 +48,14 @@ public class Velocity {
         setAcceleration(acceleration);
         setTime(time);
     }
+
+    public void setVelocity(double velocity) {
+        this.velocity = velocity;
+    }
+
     public double calculateVelocity(){
-        velocity = acceleration * time * time + distance / time;
+        velocity = acceleration * time + distance / time;
+        setVelocity(velocity);
         return velocity;
     }
 }
