@@ -6,10 +6,10 @@ public class Acceleration {
     private double initialVelocity;
     private double acceleration;
 
-    public Acceleration(double distance, double time, double velocity) {
+    public Acceleration(double distance, double time, double initialVelocity) {
         this.distance = distance;
         this.time = time;
-        this.initialVelocity = velocity;
+        this.initialVelocity = initialVelocity;
     }
 
     public Acceleration(double distance, double time) {

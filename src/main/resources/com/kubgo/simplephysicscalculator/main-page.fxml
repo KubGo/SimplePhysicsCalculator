@@ -73,7 +73,7 @@
                   <VBox alignment="TOP_CENTER" layoutY="44.0" maxWidth="250.0" prefHeight="489.0" prefWidth="250.0" spacing="10.0" AnchorPane.bottomAnchor="18.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="44.0">
                      <children>
                         <Button fx:id="velocity_calculator_btn" mnemonicParsing="false" onAction="#setVelocity_calculator_pane" text="Velocity calculator" />
-                        <Button fx:id="acceleration_calculator_btn" mnemonicParsing="false" text="Acceleration calculator" />
+                        <Button fx:id="acceleration_calculator_btn" mnemonicParsing="false" onAction="#setAcceleration_calculator_pane" text="Acceleration calculator" />
                      </children>
                   </VBox>
           </children>
