@@ -5,7 +5,7 @@ programing and some simple calculations. Time will show how far I'll go
 with this project.
 
 ### Features to implement:
-- [ ] velocity and acceleration calculator
+- [x] velocity and acceleration calculator
 - [ ] force and torque calculator
 - [ ] stress and strain calculator
 - [ ] fluid pressure and velocity calculator
