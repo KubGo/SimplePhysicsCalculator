@@ -2,12 +2,19 @@ package com.kubgo.simplephysicscalculator;
 
 import com.kubgo.simplephysicscalculator.controllerUtils.ErrorThrowingControllerInterface;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
+import javafx.scene.layout.HBox;
 import models.Acceleration;
+import net.synedra.validatorfx.Validator;
 
-public class AccelerationCalculatorController implements ErrorThrowingControllerInterface {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class AccelerationCalculatorController implements ErrorThrowingControllerInterface, Initializable {
     @FXML
     private TextField distance_fld;
     @FXML
@@ -25,7 +32,45 @@ public class AccelerationCalculatorController implements ErrorThrowingController
     @FXML
     private Button acceleration_btn;
 
-    private final Acceleration acceleration = new Acceleration();
+    private Validator validator = new Validator();
+
+    private Acceleration acceleration = new Acceleration();
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        validator.createCheck()
+                .dependsOn("distance", distance_fld.textProperty())
+                . withMethod(c -> {
+                    String value = c.get("distance");
+                    if (!isNumeric(value) && !value.isEmpty()){
+                        c.error("Please enter numeric value");
+                    }
+                })
+                .decorates(distance_fld)
+                .immediate();
+
+        validator.createCheck()
+                .dependsOn("time", time_fld.textProperty())
+                .withMethod(c -> {
+                    String value = c.get("time");
+                    if (!isNumeric(value) && !value.isEmpty()){
+                        c.error("Time must be numeric value");
+                        } else if (Double.parseDouble(value) < 0) {
+                        c.error("Time must be positive number");
+                    }
+                })
+                .decorates(time_fld)
+                .immediate();
+    }
+
+    public static boolean isNumeric(String str){
+        try {
+            Double.parseDouble(str);
+            return true;
+        } catch (NumberFormatException e){
+            return false;
+        }
+    }
 
     @FXML
     protected void onAccelerationButton(){
